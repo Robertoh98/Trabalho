@@ -10,5 +10,6 @@ package Classes;
  * @author Roberto
  */
 public class Cliente {
+    private String Nome;
     
 }
