@@ -3,7 +3,7 @@ package Classes;
 public class Cliente {
 
     private String Nome;
-    private int Telefone;
+    private String Telefone;
     private int Codigo;
 
     public Cliente() {
@@ -17,11 +17,11 @@ public class Cliente {
         this.Nome = Nome;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return Telefone;
     }
 
-    public void setTelefone(int Telefone) {
+    public void setTelefone(String Telefone) {
         this.Telefone = Telefone;
     }
 

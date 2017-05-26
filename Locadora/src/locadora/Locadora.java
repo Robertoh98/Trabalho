@@ -1,8 +1,5 @@
 package locadora;
 
-import conexao.ConnectionManager;
-import java.sql.Connection;
-
 /**
  *
  * @author Roberto & Joao
@@ -10,8 +7,7 @@ import java.sql.Connection;
 public class Locadora {
     public static void main(String[] args) {
         
-        Connection con = ConnectionManager.getConnection();
-        
+               
     }
     
 }
