@@ -2,7 +2,7 @@ package Classes;
 
 public class Filme {
 
-    private int Codigo;
+    private Integer Codigo;
     private int Quantidade;
     private String Titulo;
     private int Tipo;
@@ -10,13 +10,11 @@ public class Filme {
     public Filme() {
     }
 
-    
-    
-    public int getCodigo() {
+    public Integer getCodigo() {
         return Codigo;
     }
 
-    public void setCodigo(int Codigo) {
+    public void setCodigo(Integer Codigo) {
         this.Codigo = Codigo;
     }
 
@@ -43,5 +41,6 @@ public class Filme {
     public void setTipo(int Tipo) {
         this.Tipo = Tipo;
     }
+        
     
 }

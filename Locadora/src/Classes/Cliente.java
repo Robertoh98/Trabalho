@@ -4,7 +4,7 @@ public class Cliente {
 
     private String Nome;
     private String Telefone;
-    private int Codigo;
+    private Integer Codigo;
 
     public Cliente() {
     }
@@ -25,12 +25,14 @@ public class Cliente {
         this.Telefone = Telefone;
     }
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return Codigo;
     }
 
-    public void setCodigo(int Codigo) {
+    public void setCodigo(Integer Codigo) {
         this.Codigo = Codigo;
     }
+
+    
 
 }

@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClienteDAO {
 
@@ -19,28 +21,15 @@ public class ClienteDAO {
             String QUERY_INSERT = "insert into CLIENTE (NOME, TELEFONE) values ( ?, ?)";
             String QUERY_UPDATE = "update CLIENTE set NOME = ?, TELEFONE = ? where CODIGO_CLIENTE = ?";
 
-            if (cliente.getCodigo() == null){
+            stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, cliente.getNome());
+            stmt.setString(2, cliente.getTelefone());
 
-                stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
-                stmt.setString(1, cliente.getNome());
-                stmt.setString(2, cliente.getTelefone());
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
 
-                stmt.executeUpdate();
-                ResultSet rs = stmt.getGeneratedKeys();
-
-                if (rs.next()) {
-                    resultado = rs.getInt(1);
-                }
-
-            } else {
-
-                stmt = conn.prepareStatement(QUERY_UPDATE);
-                stmt.setString(1, cliente.getNome());
-                stmt.setString(2, cliente.getTelefone());
-                stmt.setInt(3, cliente.getCodigo());
-
-                stmt.executeUpdate();
-                resultado = cliente.getCodigo();
+            if (rs.next()) {
+                resultado = rs.getInt(1);
             }
 
             conn.close();
@@ -55,7 +44,7 @@ public class ClienteDAO {
         return resultado;
     }
 
-    public boolean excluir(Usuario usuario) {
+    public boolean excluir(Cliente cliente) {
 
         boolean resultado = false;
 
@@ -63,10 +52,10 @@ public class ClienteDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_DELETE = "delete from USUARIO where idUsuario = ?";
+            String QUERY_DELETE = "DELETE FROM CLIENTE WHERE CODIGO_CLIENTE = ?";
 
             stmt = conn.prepareStatement(QUERY_DELETE);
-            stmt.setInt(1, usuario.getId());
+            stmt.setInt(1, cliente.getCodigo());
 
             stmt.executeUpdate();
             conn.close();
@@ -81,6 +70,34 @@ public class ClienteDAO {
 
         return resultado;
 
+    }
+
+    public List<Cliente> listar() {
+        List<Cliente> lista = new ArrayList<Cliente>();
+        try {
+            String QUERY_DETALHE = "SELECT * FROM CLIENTE";
+            PreparedStatement stmt = null;
+            Connection conn = ConnectionManager.getConnection();
+
+            ResultSet rs = null;
+
+            stmt = conn.prepareStatement(QUERY_DETALHE);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setCodigo(rs.getInt("CODIGO_CLIENTE"));
+                cliente.setNome(rs.getString("NOME"));
+                cliente.setTelefone(rs.getString("TELEFONE"));
+                lista.add(cliente);
+            }
+            conn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            return lista;
+
+        }
     }
 
 }
