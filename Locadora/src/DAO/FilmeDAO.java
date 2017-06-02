@@ -12,8 +12,7 @@ import java.util.List;
 
 public class FilmeDAO {
 
-    public int salvar(Filme filme) {
-        int resultado = -1;
+    public void salvar(Filme filme) {
         try {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
@@ -39,21 +38,11 @@ public class FilmeDAO {
 
                 stmt.executeUpdate();
                 rs = stmt.getGeneratedKeys();
-
-                if (rs.next()) {
-                    resultado = rs.getInt(1);
-                }
-
                 conn.close();
             }
         } catch (Exception ex) {
-
             ex.printStackTrace();
-            resultado = -1;
-
         }
-
-        return resultado;
     }
 
     public Filme findOne(int id) {
@@ -92,8 +81,7 @@ public class FilmeDAO {
         return filme;
     }
 
-    public int editar(Filme filme) {
-        int resultado = -1;
+    public void editar(Filme filme) {
         try {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
@@ -123,18 +111,11 @@ public class FilmeDAO {
                 conn.close();
             }
         } catch (Exception ex) {
-
             ex.printStackTrace();
-            resultado = -1;
-
-        }
-
-        return resultado;
+        }      
     }
 
-    public boolean excluir(Filme filme) {
-
-        boolean resultado = false;
+    public void excluir(Filme filme) {
 
         try {
             PreparedStatement stmt = null;
@@ -148,16 +129,9 @@ public class FilmeDAO {
             stmt.executeUpdate();
             conn.close();
 
-            resultado = true;
-
         } catch (Exception ex) {
-
             ex.printStackTrace();
-            resultado = false;
         }
-
-        return resultado;
-
     }
 
     public List<Filme> listar() {

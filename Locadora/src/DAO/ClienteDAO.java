@@ -11,8 +11,7 @@ import java.util.List;
 
 public class ClienteDAO {
 
-    public int salvar(Cliente cliente) {       
-        int resultado = -1;
+    public void salvar(Cliente cliente) {       
         try {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
@@ -38,20 +37,11 @@ public class ClienteDAO {
             stmt.executeUpdate();
             rs = stmt.getGeneratedKeys();
 
-            if (rs.next()) {
-                resultado = rs.getInt(1);
-            }
-
             conn.close();
             }
         } catch (Exception ex) {
-
             ex.printStackTrace();
-            resultado = -1;
-
         }
-
-        return resultado;
     }
     
     public Cliente findOne(int id) {
@@ -89,8 +79,7 @@ public class ClienteDAO {
         return cliente;
     }
     
-    public int editar(Cliente cliente) {       
-        int resultado = -1;
+    public void editar(Cliente cliente) {       
         try {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
@@ -121,19 +110,13 @@ public class ClienteDAO {
         } catch (Exception ex) {
 
             ex.printStackTrace();
-            resultado = -1;
 
         }
-
-        return resultado;
     }
     
     
 
-    public boolean excluir(Cliente cliente) {
-
-        boolean resultado = false;
-
+    public void excluir(Cliente cliente) {
         try {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
@@ -146,16 +129,10 @@ public class ClienteDAO {
             stmt.executeUpdate();
             conn.close();
 
-            resultado = true;
-
         } catch (Exception ex) {
 
-            ex.printStackTrace();
-            resultado = false;
+            ex.printStackTrace();          
         }
-
-        return resultado;
-
     }
 
     public List<Cliente> listar() {
