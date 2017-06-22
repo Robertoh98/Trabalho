@@ -1,6 +1,7 @@
 package locadora;
 
 import View.FilmeView;
+import View.MenuView;
 
 /**
  *
@@ -10,8 +11,9 @@ public class Locadora {
 
     public static void main(String[] args) {
 
-        FilmeView fv = new FilmeView();
-        fv.add();
+        MenuView mv = new MenuView();
+        
+        mv.menu();
             
     }
 
