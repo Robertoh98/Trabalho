@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class FilmeDAO {
 
     public void salvar(Filme filme) {
@@ -86,36 +85,23 @@ public class FilmeDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_SELECT = "SELECT * FROM FILME WHERE TITULO = ?";
-
-            ResultSet rs = null;
-
-            stmt = conn.prepareStatement(QUERY_SELECT);
+            String QUERY_UPDATE = "update FILME set TITULO = ?, TIPO = ?, QNT = ? where CODIGO_FILME = ?";
+            stmt = conn.prepareStatement(QUERY_UPDATE);
             stmt.setString(1, filme.getTitulo());
+            stmt.setInt(2, filme.getTipo());
+            stmt.setInt(3, filme.getQuantidade());
+            stmt.setInt(4, filme.getCodigo());
 
-            rs = stmt.executeQuery();
+            stmt.executeUpdate();
 
-            if (rs.next()) {
-                System.out.println("já existe!");
-            } else {
-
-                String QUERY_UPDATE = "update FILME set TITULO = ?, TIPO = ?, QNT = ? where CODIGO_FILME = ?";
-                stmt = conn.prepareStatement(QUERY_UPDATE);
-                stmt.setString(1, filme.getTitulo());
-                stmt.setInt(2, filme.getTipo());
-                stmt.setInt(3, filme.getQuantidade());
-                stmt.setInt(4, filme.getCodigo());
-
-                stmt.executeUpdate();
-
-                conn.close();
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }      
+            conn.close();
     }
+    catch (Exception ex) {
+            ex.printStackTrace();
+    }
+}
 
-    public void excluir(Filme filme) {
+public void excluir(Filme filme) {
 
         try {
             PreparedStatement stmt = null;

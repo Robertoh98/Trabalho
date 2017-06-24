@@ -71,14 +71,24 @@ public class MenuView {
                 if (tela.equalsIgnoreCase("Clientes")) {
 
                 } else {
-
+                    try {
+                        int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do filme:"));
+                        filme.edit(id);
+                    } catch (Exception e) {                                                
+                    }
                 }
                 break;
             case 3:
                 if (tela.equalsIgnoreCase("Clientes")) {
 
                 } else {
-
+                    try {
+                        int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do filme:"));
+                        filme.view(id);
+                        this.menus("Filme");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Id incorreto ou inexistente");
+                    }                    
                 }
                 break;
             case 4:
