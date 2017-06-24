@@ -25,7 +25,7 @@ public class MenuView {
 
         switch (option) {
             case 1:
-                this.menus("Clientes");
+                this.menus("Cliente");
                 break;
             case 2:
                 this.menus("Filmes");
@@ -42,6 +42,7 @@ public class MenuView {
 
     public void menus(String tela) {
         FilmeView filme = new FilmeView();
+        ClienteView cliente = new ClienteView();
         int option = 0;
         String valor = JOptionPane.showInputDialog("JR Comercio de produtos LTDA.\n"
                 + "Controle de locadora de vídeo\n"
@@ -61,26 +62,38 @@ public class MenuView {
 
         switch (option) {
             case 1:
-                if (tela.equalsIgnoreCase("Clientes")) {
-
+                if (tela.equalsIgnoreCase("Cliente")) {
+                    cliente.add();
                 } else {
                     filme.add();
                 }
                 break;
             case 2:
-                if (tela.equalsIgnoreCase("Clientes")) {
-
+                if (tela.equalsIgnoreCase("Cliente")) {
+                    try {
+                        int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do cliente:"));
+                        cliente.edit(id);
+                    } catch (Exception e) {
+                        this.menus("Cliente");
+                    }
                 } else {
                     try {
                         int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do filme:"));
                         filme.edit(id);
-                    } catch (Exception e) {                                                
+                    } catch (Exception e) {
                     }
                 }
                 break;
             case 3:
-                if (tela.equalsIgnoreCase("Clientes")) {
-
+                if (tela.equalsIgnoreCase("Cliente")) {
+                    try {
+                        int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do cliente:"));
+                        cliente.view(id);
+                        this.menus("Cliente");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Id incorreto ou inexistente");
+                        this.menus("Cliente");
+                    }
                 } else {
                     try {
                         int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do filme:"));
@@ -88,18 +101,26 @@ public class MenuView {
                         this.menus("Filme");
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Id incorreto ou inexistente");
-                    }                    
+                        this.menus("Filme");
+                    }
                 }
                 break;
             case 4:
-                if (tela.equalsIgnoreCase("Clientes")) {
-
+                if (tela.equalsIgnoreCase("Cliente")) {
+                    try {
+                        int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do cliente:"));
+                        cliente.delete(id);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Id incorreto ou inexistente");
+                        this.menus("Cliente");
+                    }
                 } else {
                     try {
                         int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do filme:"));
                         filme.delete(id);
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Id incorreto ou inexistente");
+                        this.menus("Filme");
                     }
                 }
                 break;
