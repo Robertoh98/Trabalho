@@ -134,6 +134,7 @@ public class MenuView {
     }
 
     public void menuMovimentação() {
+        AlugaView aluga = new AlugaView();
         int option = 0;
         String valor = JOptionPane.showInputDialog("JR Comercio de produtos LTDA.\n"
                 + "Controle de locadora de vídeo\n"
@@ -150,8 +151,10 @@ public class MenuView {
         }
         switch (option) {
             case 1:
-                break;
+                aluga.locar();
+                break;                
             case 2:
+                aluga.devolver();
                 break;
             case 0:
                 this.menu();

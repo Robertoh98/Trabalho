@@ -3,7 +3,7 @@ package Classes;
 import java.sql.Date;
 
 public class Aluga {
-    private Integer codigo;
+
     private Cliente cliente;
     private Filme filme;
     private Date dtEmprestimo;
@@ -12,14 +12,6 @@ public class Aluga {
     public Aluga() {
     }
 
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }       
-    
     public Cliente getCliente() {
         return cliente;
     }
@@ -34,7 +26,7 @@ public class Aluga {
 
     public void setFilme(Filme filme) {
         this.filme = filme;
-    }        
+    }
 
     public Date getDtEmprestimo() {
         return dtEmprestimo;
@@ -51,6 +43,5 @@ public class Aluga {
     public void setDtDevolucao(Date dtDevolucao) {
         this.dtDevolucao = dtDevolucao;
     }
-    
-    
+
 }
