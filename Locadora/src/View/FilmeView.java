@@ -41,7 +41,11 @@ public class FilmeView {
 
                     filmeDao.salvar(filme);
                     JOptionPane.showMessageDialog(null, "Adicionado com sucesso!");
-                    menu.menus("Filme");
+                    if (JOptionPane.showConfirmDialog(null, "Deseja adicionar um novo Filme?") == 0) {
+                        this.add();
+                    } else {
+                        menu.menus("Filme");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Não foi possível adicionar");
                     menu.menus("Filme");
@@ -98,7 +102,12 @@ public class FilmeView {
 
             filmeDao.editar(filme);
             JOptionPane.showMessageDialog(null, "Editado com sucesso!");
-            menu.menus("Filme");
+            if (JOptionPane.showConfirmDialog(null, "Nova edição?") == 0) {
+                this.edit(id);
+            } else {
+                JOptionPane.showMessageDialog(null, "Não foi possível editar");
+                menu.menus("Filme");
+            }
 
         } catch (Exception e) {
 

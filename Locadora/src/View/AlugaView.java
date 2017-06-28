@@ -11,7 +11,7 @@ import DAO.AlugaDAO;
 public class AlugaView {
 
     MenuView menu = new MenuView();
-    
+
     public void locar() {
 
         Cliente cliente = new Cliente();
@@ -30,12 +30,23 @@ public class AlugaView {
         if (filme.getQuantidade() <= 0) {
             JOptionPane.showMessageDialog(null, "Não há este título em estoque");
         } else {
-            aluga.setCliente(cliente);
-            aluga.setFilme(filme);
-            alugaDao.alugar(aluga);
+            if (JOptionPane.showConfirmDialog(null, "Confirma emprestimo?") == 0) {
+                aluga.setCliente(cliente);
+                aluga.setFilme(filme);
+                alugaDao.alugar(aluga);
+            } else {
+             JOptionPane.showMessageDialog(null, "Emprestimo cancelado");
+            menu.menuMovimentação();   
+            }
         }
         JOptionPane.showMessageDialog(null, "Alugado com sucesso");
-        menu.menuMovimentação();
+        if (JOptionPane.showConfirmDialog(null, "Deseja fazer um novo emprestimo?") == 0) {
+            this.locar();
+        } else {
+            JOptionPane.showMessageDialog(null, "Não foi possível alugar");
+            menu.menuMovimentação();
+        }
+
     }
 
     public void devolver() {
@@ -54,9 +65,9 @@ public class AlugaView {
         filme = filmeDao.findOne(option);
 
         aluga = alugaDao.findOne(cliente.getCodigo(), filme.getCodigo());
-        
+
         alugaDao.devolução(aluga);
-        
+
         JOptionPane.showMessageDialog(null, "Devolvido com sucesso");
         menu.menuMovimentação();
     }

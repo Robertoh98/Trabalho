@@ -166,6 +166,7 @@ public class MenuView {
     }
 
     public void relatorios() {
+        RelatorioView relatorio = new RelatorioView();
         int option = 0;
         String valor = JOptionPane.showInputDialog("JR Comercio de produtos LTDA.\n"
                 + "Controle de locadora de vídeo\n"
@@ -183,8 +184,10 @@ public class MenuView {
         }
         switch (option) {
             case 1:
+                relatorio.balancoAcervo();
                 break;
             case 2:
+                relatorio.balancoMovimentacoes();
                 break;
             case 0:
                 this.menu();

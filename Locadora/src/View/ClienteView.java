@@ -35,7 +35,11 @@ public class ClienteView {
 
                     clienteDao.salvar(cliente);
                     JOptionPane.showMessageDialog(null, "Adicionado com sucesso!");
-                    menu.menus("Cliente");
+                    if (JOptionPane.showConfirmDialog(null, "Adicionar novo?") == 0) {
+                        this.add();
+                    } else {
+                        menu.menus("Cliente");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Não foi possível adicionar");
                     menu.menus("Cliente");
@@ -53,7 +57,8 @@ public class ClienteView {
                 JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
                 menu.menus("Cliente");
             } catch (Exception e) {
-                System.out.println(e);
+                JOptionPane.showMessageDialog(null, "Não foi possível excluir");
+                this.delete(id);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Não foi possível excluir");
@@ -84,15 +89,20 @@ public class ClienteView {
                     menu.menus("Cliente");
                     break;
             }
+            if (JOptionPane.showConfirmDialog(null, "Deseja realmente adicionar?") == 0) {
 
-            clienteDao.editar(cliente);
-            JOptionPane.showMessageDialog(null, "Editado com sucesso!");
-            menu.menus("Cliente");
+                clienteDao.editar(cliente);
+                JOptionPane.showMessageDialog(null, "Editado com sucesso!");
+                menu.menus("Cliente");
+            } else {
+                JOptionPane.showMessageDialog(null, "Não foi possível editar");
+                this.edit(id);
+            }
 
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, "Não foi possível editar");
-            menu.menus("Cliente");
+            this.edit(id);
         }
     }
 
@@ -103,7 +113,7 @@ public class ClienteView {
             if (cliente.getCodigo() == null) {
                 JOptionPane.showMessageDialog(null, "Id inexistente!");
                 menu.menus("Cliente");
-            }            
+            }
 
             JOptionPane.showMessageDialog(null, "Cliente: " + cliente.getNome()
                     + "\n Telefone: " + cliente.getTelefone());
