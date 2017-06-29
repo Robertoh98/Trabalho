@@ -34,12 +34,13 @@ public class AlugaView {
                 aluga.setCliente(cliente);
                 aluga.setFilme(filme);
                 alugaDao.alugar(aluga);
+                JOptionPane.showMessageDialog(null, "Alugado com sucesso");
             } else {
              JOptionPane.showMessageDialog(null, "Emprestimo cancelado");
             menu.menuMovimentação();   
             }
         }
-        JOptionPane.showMessageDialog(null, "Alugado com sucesso");
+        
         if (JOptionPane.showConfirmDialog(null, "Deseja fazer um novo emprestimo?") == 0) {
             this.locar();
         } else {
