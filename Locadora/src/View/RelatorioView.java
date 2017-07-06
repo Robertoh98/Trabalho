@@ -28,7 +28,7 @@ public class RelatorioView {
         }
         JOptionPane.showMessageDialog(null, mensagem);
 
-        menu.menuMovimentação();
+        menu.relatorios();
     }
 
     public void balancoMovimentacoes() {
@@ -45,12 +45,12 @@ public class RelatorioView {
         String rankCliente = "";
         int i = 1;
         for (Filme f : rankingFilmes) {
-            rankFilmes = rankFilmes +"\n"+i+"- "+f.getCodigo()+" "+ f.getTitulo()+" "+f.getQuantidade();
+            rankFilmes = rankFilmes + "\n" + i + "- " + f.getCodigo() + " " + f.getTitulo() + " " + f.getQuantidade();
             i++;
         }
         int j = 1;
         for (Cliente c : rankingClientes) {
-            rankCliente = rankCliente +"\n"+j+"- "+c.getCodigo()+" "+ c.getNome()+" "+c.getTelefone();            
+            rankCliente = rankCliente + "\n" + j + "- " + c.getCodigo() + " " + c.getNome() + " " + c.getTelefone();
             j++;
         }
         JOptionPane.showMessageDialog(null, "JR Comercio de produtos LTDA.\n"
@@ -63,8 +63,9 @@ public class RelatorioView {
                 + "\nFilmes 24 horas" + total24
                 + "\nFilmes 48 horas" + total48
                 + "\nFilmes: " + totalEstoque
-                +"\n\nTop 10 Filmes:\n"+ rankFilmes
-                +"\n\nTop 10 Clientes:\n" + rankCliente);       
+                + "\n\nTop 10 Filmes:\n" + rankFilmes
+                + "\n\nTop 10 Clientes:\n" + rankCliente);
+        menu.relatorios();
     }
 
 }
